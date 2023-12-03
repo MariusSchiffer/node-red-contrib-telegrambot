@@ -363,6 +363,7 @@ The node has up to two outputs (selectable via the *Send errors to second output
 Additionally to sending content, the sender node can be used to issue commands direct to the API. In this case the `msg.payload` elements contain (see examples for further details):
 - `msg.payload.type` - one of the commands listed below
 - `msg.payload.content` - required command arguments
+- `msg.payload.chatId` - chatId if required
 - `msg.payload.options` (optional) - additional command arguments
 
 
@@ -386,22 +387,22 @@ The `msg.payload.type` needs to be set to one of the following values:
 | **leaveChat** | - | - | https://core.telegram.org/bots/api#leavechat |
 | **exportChatInviteLink** | - | - | https://core.telegram.org/bots/api#exportchatinvitelink |
 | **createChatInviteLink** | - | - | https://core.telegram.org/bots/api#createchatinvitelink |
-| **banChatMember** | { chat_id (integer/string), user_id (integer) } | optional arguments | https://core.telegram.org/bots/api#banchatmember |
-| **unbanChatMember** | { chat_id (integer/string), user_id (integer) } | optional arguments | https://core.telegram.org/bots/api#unbanchatmember |
+| **banChatMember** | user_id (integer)  | optional arguments | https://core.telegram.org/bots/api#banchatmember |
+| **unbanChatMember** | user_id (integer)  | optional arguments | https://core.telegram.org/bots/api#unbanchatmember |
 | **restrictChatMember** | { chat_id (integer/string), user_id (integer), permissions (ChatPermissions) } | optional arguments | https://core.telegram.org/bots/api#restrictchatmember |
-| **promoteChatMember** | { chat_id (integer/string), user_id (integer) } | optional arguments | https://core.telegram.org/bots/api#promotechatmember |
+| **promoteChatMember** | user_id (integer)  | optional arguments | https://core.telegram.org/bots/api#promotechatmember |
 | **setChatPhoto** | photo (InputFile) | - | https://core.telegram.org/bots/api#setchatphoto |
 | **setChatTitle** | title (string) | - | https://core.telegram.org/bots/api#setchattitle |
 | **setChatDescription** | optional arguments | optional arguments | https://core.telegram.org/bots/api#setchatdescription |
-| **pinChatMessage** | { chat_id (integer/string), message_id (integer) | optional arguments | https://core.telegram.org/bots/api#pinchatmessage |
+| **pinChatMessage** | message_id (integer)  | optional arguments | https://core.telegram.org/bots/api#pinchatmessage |
 | **unpinChatMessage** | optional arguments | - | https://core.telegram.org/bots/api#unpinchatmessage |
 | **unpinAllChatMessages** | - | - | https://core.telegram.org/bots/api#unpinallchatmessages |
 | **getChatAdministrators** | - | - | https://core.telegram.org/bots/api#getchatadministrators |
 | **getChatMemberCount** | - | - | https://core.telegram.org/bots/api#getchatmembercount |
 | **getChat** | - | - | https://core.telegram.org/bots/api#getchat |
-| **getChatMember** | { chat_id (integer/string), user_id (integer) } | - | https://core.telegram.org/bots/api#getchatmember |
-| **approveChatJoinRequest** | { chat_id (integer/string), user_id (integer) } | - | https://core.telegram.org/bots/api#approvechatjoinrequest |
-| **declineChatJoinRequest** | { chat_id (integer/string), user_id (integer) } | - | https://core.telegram.org/bots/api#declinechatjoinrequest |
+| **getChatMember** | user_id (integer) | - | https://core.telegram.org/bots/api#getchatmember |
+| **approveChatJoinRequest** | user_id (integer)  | - | https://core.telegram.org/bots/api#approvechatjoinrequest |
+| **declineChatJoinRequest** | user_id (integer)  | - | https://core.telegram.org/bots/api#declinechatjoinrequest |
 | **sendInvoice** | { title (string), description (string), payload (string), providerToken (string), startParameter (string), currency (string), prices (string) } | optional arguments | https://core.telegram.org/bots/api#sendinvoice |
 | **answerPreCheckoutQuery** | { preCheckoutQueryId (string), ok (boolean)} | optional arguments | https://core.telegram.org/bots/api#answerprecheckoutquery |
 | **pre_checkout_query** | { preCheckoutQueryId (string), ok (boolean)} | optional arguments | https://core.telegram.org/bots/api#answerprecheckoutquery |
@@ -418,7 +419,7 @@ The `msg.payload.type` needs to be set to one of the following values:
 | **reopenGeneralForumTopic** | { chat_id (integer/string) } | - | https://core.telegram.org/bots/api#reopengeneralforumtopic |
 | **hideGeneralForumTopic** | { chat_id (integer/string) } | - | https://core.telegram.org/bots/api#hidegeneralforumtopic |
 | **unhideGeneralForumTopic** | { chat_id (integer/string) } | - | https://core.telegram.org/bots/api#unhidegeneralforumtopic |
-| **stopPoll** | { chat_id (integer/string), message_id (integer) } | optional arguments | https://core.telegram.org/bots/api#stoppoll |
+| **stopPoll** | message_id (integer) | optional arguments | https://core.telegram.org/bots/api#stoppoll |
 
 
 The content format of the command arguments (required and optional) depends on the api command.  
